@@ -1,0 +1,27 @@
+{
+    "function": "lambda x1, x2, x3: 0.24 * x3 * x1 ** 2 - 1.05 * x2 + (x3 ** 2 + 0.25 * x1) * x2 - 0.03 * x2 ** 3 - x1 * x2 * x3",
+    "dataset_size": 8192,
+    "train_test_ratio": 0.5,
+    "data_ranges": {
+        "same": {
+            "x1": [-10, 10],
+            "x2": [-10, 10],
+            "x3": [-10, 10]
+        },
+        "different": {
+            "train": {
+                "x1": [-10, 0],
+                "x2": [-10, -5],
+                "x3": [0, 10]
+            },
+            "test": {
+                "x1": [0, 10],
+                "x2": [5, 10],
+                "x3": [-10, 0]
+            }
+        }
+    },
+    "model_parameters": {
+        "layer_sizes": [7, 7, 7]
+    }
+}
