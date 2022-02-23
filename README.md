@@ -148,11 +148,11 @@ The user can control the amount of information displayed during training using t
 
 The default is 3.
 
-## Uruchomienie eksperymentów
+## Launching the experiments
 
-Poniższe komendy umożliwią odtworzenie przeprowadzonych eksperymentów dla konfiguracji, w których jakość aproksymacji funkcji była największa.
+The following commands will allow you to recreate the experiments performed for the configurations in which the quality of the function approximation was the highest.
 
-### Funkcja 3-argumentowa
+### 3-argument function
 
 <img src="https://render.githubusercontent.com/render/math?math=f(x)=0.24x_1^2x_3-1.05x_2%2Bx_2x_3^2%2B0.25x_1x_2-0.03x_2^3-x_1x_2x_3" height="25">
 
@@ -160,7 +160,7 @@ Poniższe komendy umożliwią odtworzenie przeprowadzonych eksperymentów dla ko
 python demo.py 3-arg-function.json
 ```
 
-### Funkcja 5-argumentowa
+### 5-argument function
 
 <img src="https://render.githubusercontent.com/render/math?math=f(x)=10sin(x_1x_2\pi)%2B20x_3%2B10x_1x_4%2B5x_5^2-10" height="25">
 
@@ -168,7 +168,7 @@ python demo.py 3-arg-function.json
 python demo.py 5-arg-function.json
 ```
 
-### Funkcja 7-argumentowa
+### 7-argument function
 
 <img src="https://render.githubusercontent.com/render/math?math=f(x)=x_1^2%2B3x_2%2Bx_3x_4%2B2x_5-1.5x_6x_7" height="25">
 
@@ -176,14 +176,14 @@ python demo.py 5-arg-function.json
 python demo.py 7-arg-function.json
 ```
 
-## Uruchomienie testów
+## Running tests
 
-Poniższa komenda uruchomi testy sprawdzające, czy propagacja wprzód i propagacja wsteczna działają poprawnie, a także test integracyjny sprawdzający, czy program wykonuje się poprawnie.
+The following command will run tests to ensure that forward and backpropagation are working properly, as well as an integration test to verify that the program is executing correctly.
 
 ```
 python test.py
 ```
 
-## Podziękowania
+## Acknowledgments
 
-Biblioteka [micrograd](https://github.com/karpathy/micrograd), autorstwa [Andreja Karpathy'ego](https://github.com/karpathy), była pomocna podczas pracy nad projektem.
+The [micrograd](https://github.com/karpathy/micrograd) library by [Andrej Karpathy](https://github.com/karpathy) was helpful in working on the project.
