@@ -58,15 +58,15 @@ In order to run the program, you need to pass a JSON file to it. The file must h
 	  - the *test* field means testing intervals.
 - The *model_parameters* field defines the default values of the model parameters. Here you can put keys such as: *layer_sizes*, *start_learning_rate*, *end_learning_rate*, *momentum*, *loss_function*, *epochs*, *batch_size*, *patience*, *min_delta*, *display_freq*, *verbose* and *random_state*. You don't have to define any parameter (pass an empty dictionary). By default, all model parameters defined in this field will be loaded. If any parameter is not defined in this field, then it will take the default value.
 
-## Opis programu wykonywalnego
+## Description of the executable
 
-Program wykonywalny *demo.py* znajduje się w głównym katalogu projektu. W celu zapoznania się z opcjami programu, można użyć następującej komendy:
+The *demo.py* executable is located in the main project directory. In order to see the program options, you can use the following command:
 
 ```
 python demo.py --help
 ```
 
-Zostanie wyświetlona następująca instrukcja:
+The following instruction is displayed:
 
 ```
 usage: demo.py [-h] [-d] [-n] [-L LAYER_SIZES [LAYER_SIZES ...]] [-S START_LEARNING_RATE] [-E END_LEARNING_RATE] [-M MOMENTUM] [-l {mse,mae}] [-e EPOCHS] [-b BATCH_SIZE] [-p PATIENCE] [-m MIN_DELTA]
@@ -96,56 +96,57 @@ optional arguments:
   -r RANDOM_STATE, --random-state RANDOM_STATE                                   random state (default: 42)
 ```
 
-Aby uruchomić program, należy przekazać mu jako pierwszy argument ścieżkę do pliku JSON:
+In order to run the program, pass the path to the JSON file as the first argument:
 
 ```
 python demo.py <your-function-file-name>.json
 ```
 
-Spowoduje to uruchomienie programu z parametrami, zawartymi w przekazanym pliku.
+This will start the program with the parameters contained in the uploaded file.
 
-Domyślnie zbiór danych zostanie wygenerowany ze zdefiniowanego wspólnego rozkładu danych, a następnie zostanie dokonany podział treningowo-testowy danych. Jeżeli użytkownik zechce wykonać trening na danych treningowych wygenerowanych ze zdefiniowanego przedziału treningowego, a testowanie na danych testowych wygenerowanych ze zdefiniowanego przedziału testowego, wtedy powinien przekazać flagę *--different-ranges*:
+By default, the dataset will be generated from the defined common data distribution, and then the train-test split of the data will be performed. If the user wants to perform training on training data generated from the defined training interval, and testing on testing data generated from the defined testing interval, then they should pass the *- different-ranges* flag:
 
 ```
 python demo.py <your-function-file-name>.json --different-ranges
 ```
 
-Domyślnie parametry modelu zostaną załadowane z pola *model_parameters* pliku wsadowego. Parametrom nieobecnym w tym polu zostaną przypisane wartości domyślne. Jeżeli użytkownik zechce zrezygnować z przekazywania modelowi parametrów z pliku, wtedy powinien przekazać flagę *--not-load-parameters*. Wtedy będzie miał manualną kontrolę nad przekazywanymi do modelu parametrami:
+By default, model parameters will be loaded from the *model_parameters* field of the input file. Parameters that are not present in this field will be assigned default values. If the user decides not to pass parameters to the model from the file, then they should pass the *--not-load-parameters* flag. Then they will have the manual control over the parameters passed to the model:
 
 ```
 python demo.py <your-function-file-name>.json --not-load-parameters
 ```
 
-Pozostałe parametry programu zostały wcześniej omówione i ich wartości mogą być modyfikowane przez przypisanie ich flagom odpowiednich wartości. Przykładowo, jeżeli użytkownik zechce przetrenować model:
-- na pliku *3-arg-function.json*,
-- wytrenować go na wspólnym rozkładzie danych,
-- nie ładować parametrów z pliku,
-- zastosować rozmiary warstw: [10, 20, 5],
-- funkcję kosztu MSE,
-- liczbę epok treningowych równą 15,
-- pozostałe parametry domyślne,
+The remaining parameters of the program have been discussed earlier and their values can be modified by assigning appropriate values to the flags. For example, if the user wants to train the model:
 
-wtedy powinien wpisać następującą komendę:
+- on the input file named *3-arg-function.json*,
+- train it on the common data distribution,
+- do not load the parameters from the file,
+- use layers with sizes: [10, 20, 5],
+- use MSE cost function,
+- train model on 15 epochs,
+- set the remaining parameters to default,
+
+then they should type the following command:
 
 ```
 python demo.py 3-arg-function.json --not-load-parameters -L 10 20 5 -l mae -e 15
 ```
 
-Po uruchomieniu programu zostanie wyświetlona zastosowana konfiguracja parametrów, a w dalszej kolejności wypisane zostaną wyniki kolejnych etapów uczenia. Model zakończy działanie w dwóch przypadkach:
+After starting the program, the used parameter configuration will be displayed, and then the results of the subsequent learning stages will be listed. The model will end in two cases:
 
-- zostaną wykonane wszystkie epoki treningowe,
-- nastąpi *early stopping* ze względu na brak poprawy jakości modelu.
+- all training periods will be performed,
+- *early stopping* will occur due to the lack of improvement in the quality of the model.
 
-Po zakończeniu działania programu wyświetlona zostanie osiągnięta jakość aproksymacji funkcji przez model zarówno na zbiorze treningowym, jak i na zbiorze testowym.
+After the program is finished, the achieved quality of approximation of the function by the model, both on the training set and on the testing set, will be displayed.
 
-Użytkownik może kontrolować ilość wyświetlanych informacji podczas treningu za pomocą flagi *--verbose*:
+The user can control the amount of information displayed during training using the *--verbose* flag:
 
- - wartość 0 oznacza brak wyświetlania jakichkolwiek informacji,
- - wartość 1 oznacza wyświetlanie jedynie konfiguracji parametrów oraz końcowego wyniku,
- - wartość 2 oznacza wyświetlanie konfiguracji parametrów, końcowego wyniku oraz wyników po kolejnych epokach,
- - wartość 3 oznacza wyświetlanie wszystkich informacji: konfiguracji parametrów, końcowego wyniku, wyników po kolejnych epokach oraz wyników w trakcie trwania epoki.
+ - value 0 means that no information is displayed,
+ - value 1 means that only the parameter configuration and the final result are displayed,
+ - value 2 means displaying the configuration of parameters, the final result and the results after subsequent epochs,
+ - value 3 means displaying all information: parameter configuration, final result, results after successive epochs and results during the epoch.
 
-Domyślnie ustawiona jest wartość 3.
+The default is 3.
 
 ## Uruchomienie eksperymentów
 
