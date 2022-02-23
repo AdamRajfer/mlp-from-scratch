@@ -1,12 +1,12 @@
-# Sieć MLP do aproksymacji funkcji: implementacja oraz eksperymenty
+# MLP network for function approximation: implementation and experiments
 
-Celem projektu było wykonanie programu do badania wpływu liczby warstw sieci MLP, a także liczby neuronów w poszczególnych warstwach, na jakość aproksymacji funkcji. Ponadto zbadano wpływ parametryzacji algorytmu propagacji wstecznej na wartość błędu modelu. Badania zostały przeprowadzone dla trzech nieliniowych funkcji wieloargumentowych, zwracających liczby rzeczywiste (liczba argumentów odpowiednio: 3, 5 i 7). Program umożliwia również śledzenie dokładności aproksymacji dla kolejnych epok i iteracji uczenia.
+The goal of the project was to develop a program to study the impact of number of MLP network layers, as well as the number of neurons in individual layers, on the quality of function approximation. Moreover, the influence of the parameterization of the backpropagation algorithm on the value of the model error was investigated. The research was carried out for three nonlinear multi-argument functions returning real numbers (number of arguments: 3, 5 and 7, respectively). The program also enables tracking the accuracy of approximation for successive epochs and learning iterations.
 
-Program został zaimplementowany z wykorzystaniem *wyłącznie* biblioteki standardowej Pythona 3.
+The program has been implemented using *only* Python 3 standard library.
 
-## Plik wsadowy programu
+## Input file
 
-Aby uruchomić program, należy przekazać mu plik o rozszerzeniu JSON. Plik musi mieć następującą strukturę:
+In order to run the program, you need to pass a JSON file to it. The file must have the following structure:
 
 ```yaml
 {
@@ -48,15 +48,15 @@ Aby uruchomić program, należy przekazać mu plik o rozszerzeniu JSON. Plik mus
   }
 }
 ```
-- Pole *function* musi zawierać definicję zadanej funkcji w postaci wyrażenia lambda zapisanego w postaci zmiennej tekstowej. Argumenty funkcji muszą mieć nazwy kolejno: [x1, x2, ...,  x*n*], gdzie *n* to liczba argumentów. Pole to musi mieć przypisaną wartość.
-- Pole *dataset_size* oznacza całkowitą liczbę par (**x**, y), jakie zostaną wygenerowane. Pole to musi mieć przypisaną wartość.
-- Pole *train_test_ratio* określa, jaki procent wszystkich par trafi do zbioru treningowego. Pole to musi mieć przypisaną wartość.
-- Pole *data_ranges* definiuje przedziały, z których losowane będą argumenty funkcji. Pole to musi mieć przypisaną wartość. Ma następujące pola:
-  - pole *same* definiuje przedziały argumentów, które będą losowane w trybie losowania danych z jednego przedziału,
-  - pole *differen* definiuje przedziały argumentów, które będą losowane w trybie losowania danych treningowych z przedziału treningowego i danych testowych z przedziału testowego:
-	  - pole *train* oznacza przedziały treningowe,
-	  - pole *test* oznacza przedziały testowe.
-- Pole *model_parameters* definiuje domyślne wartości parametrów modelu. Można w nim umieścić takie klucze, jak: *layer_sizes*, *start_learning_rate*, *end_learning_rate*, *momentum*,  *loss_function*, *epochs*, *batch_size*, *patience*, *min_delta*, *display_freq*, *verbose* oraz *random_state*. Można w nim nie umieszczać żadnego parametru (przekazać pusty słownik). Domyślnie wczytane zostaną wszystkie parametry modelu, zdefiniowane w tym polu. Jeżeli jakiegoś parametru nie ma zdefiniowanego w tym polu, wtedy przyjmie on wartość domyślną.
+- The *function* field must contain the definition of the given function in the form of a lambda expression stored in the form of a text variable. Function arguments must be named [x1, x2, ..., x*n*], where *n* is the number of arguments. This field must be assigned a value.
+- The *dataset_size* field means the total number of pairs (**x**, y) that will be generated. This field must be assigned a value.
+- The *train_test_ratio* field determines the percentage of all pairs that will be assigned to the training set. This field must be assigned a value.
+- The *data_ranges* field defines the intervals from which the function arguments will be drawn. This field must be assigned a value. It has the following fields:
+  - the *same* field defines the ranges of arguments that will be randomized, same for training and testing data,
+  - the *different* field defines the ranges of arguments that will be randomized, different for training and testing data:
+	  - the *train* field means training intervals,
+	  - the *test* field means testing intervals.
+- The *model_parameters* field defines the default values of the model parameters. Here you can put keys such as: *layer_sizes*, *start_learning_rate*, *end_learning_rate*, *momentum*, *loss_function*, *epochs*, *batch_size*, *patience*, *min_delta*, *display_freq*, *verbose* and *random_state*. You don't have to define any parameter (pass an empty dictionary). By default, all model parameters defined in this field will be loaded. If any parameter is not defined in this field, then it will take the default value.
 
 ## Opis programu wykonywalnego
 
